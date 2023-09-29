@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 
 class ApiController extends Controller
 {
     public function index(){
-        return response()->json([
-            'menssage' => 'Hello world',
-        ]);
+        $users = User::all();
+
+        return UserResource::collection($users);
     }
 }
